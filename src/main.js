@@ -1,7 +1,29 @@
-// query selector variables go here 👇
+var mainViewHomePage = document.querySelector('.main-poster')
+var backToMainButton = document.querySelector('.back-to-main')
+var takeMeBackButton = document.querySelector('.show-main')
 
-// we've provided you with some data to work with 👇
-// tip: you can tuck this data out of view with the dropdown found near the line number where the variable is declared 
+var SaveThisPosterButton = document.querySelector('.save-poster')
+var showSavedPostersButton = document.querySelector('.show-saved')
+var showSavedPostersSection = document.querySelector('.saved-posters.hidden')
+
+var showRandomPosterButton = document.querySelector('.show-random')
+
+var createYourOwnPosterButton = document.querySelector('.show-form')
+var createYourOwnPosterSection = document.querySelector('.poster-form.hidden')
+
+var savedPosterCounter = document.querySelector('.saved-posters-grid')
+
+var inputYourOwnPosterImageURL = document.querySelector('#poster-image-url')
+var inputYourOwnPosterTitle = document.querySelector('#poster-title')
+var inputYourOwnPosterQuote = document.querySelector('#poster-quote')
+var showMyPosterButton = document.querySelector('.make-poster')
+
+// working on this
+var showUnmotivationalPosterButton = document.querySelector('.unmotivational-poster')
+var showUnmotivationalSection = document.querySelector('.unmotivational-posters.hidden')
+var backToMainButton2 = document.querySelector('.back-to-main2')
+var showUnmotivationalPosterCounter = document.querySelector('.unmotivational-posters-flex')
+
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -99,15 +121,199 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+var unmotivationalPosters = [
+  {
+    name: "FAILURE",
+    description: "Why bother trying? It's probably not worth it.",
+    price: 68.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/failure.jpg",
+  },
+  {
+    name: "MEDIOCRITY",
+    description: "Dreams are just that—dreams.",
+    price: 127.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/mediocrity.jpg",
+  },
+  {
+    name: "REGRET",
+    description: "Hard work rarely pays off.",
+    price: 89.00,
+    year: 2018,
+    vintage: true,
+    img_url:  "./assets/regret.jpg",
+  },
+  {
+    name: "FUTILITY",
+    description: "You're not good enough.",
+    price: 150.00,
+    year: 2016,
+    vintage: false,
+    img_url:  "./assets/futility.jpg",
+  },
+  {
+    name: "DEFEAT",
+    description: "It's too late to start now.",
+    price: 35.00,
+    year: 2023,
+    vintage: false,
+    img_url:  "./assets/defeat.jpg",
+  },
+  {
+    name: "HOPELESSNESS",
+    description: "Stay in your comfort zone; it's safer.",
+    price: 112.00,
+    year: 2020,
+    vintage: true,
+    img_url: "./assets/hopelessness.jpg",
+  },
+  {
+    name: "LAZINESS",
+    description: "You can't change anything.",
+    price: 25.00,
+    year: 2022,
+    vintage: false,
+    img_url: "./assets/laziness.jpg",
+  },
+  {
+    name: "PROCRASTINATION",
+    description: "Better to avoid failure by not trying at all.",
+    price: 48.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/procrastination.jpg",
+  },
+  {
+    name: "DESPAIR",
+    description: "Let someone else do it; you’ll just mess it up.",
+    price: 73.00,
+    year: 2015,
+    vintage: false,
+    img_url: "./assets/despair.jpg",
+  },
+  {
+    name: "NEGLECT",
+    description: "Happiness is overrated.",
+    price: 160.00,
+    year: 2019,
+    vintage: true,
+    img_url: "./assets/neglect.jpg",
+  },
+  {
+    name: "FEAR",
+    description: "Giving up is always an option.",
+    price: 91.00,
+    year: 2014,
+    vintage: false,
+    img_url: "./assets/fear.jpg",
+  },
+  {
+    name: "APATHY",
+    description: "No one cares about your effort.",
+    price: 110.00,
+    year: 2016,
+    vintage: true,
+    img_url: "./assets/apathy.jpg",
+  },
+  {
+    name: "MISERY",
+    description: "Why take risks when you can stay stagnant?",
+    price: 55.00,
+    year: 2021,
+    vintage: false,
+    img_url: "./assets/misery.jpg",
+  },
+  {
+    name: "BLAME",
+    description: "Expect disappointment and you'll never be disappointed.",
+    price: 39.00,
+    year: 2017,
+    vintage: true,
+    img_url: "./assets/blame.jpg",
+  },
+  {
+    name: "DOUBT",
+    description: "Success is for other people, not you.",
+    price: 140.00,
+    year: 2020,
+    vintage: false,
+    img_url: "./assets/doubt.jpg",
+  }
+];
 var savedPosters = [];
-var currentPoster;
 
-// event listeners go here 👇
+backToMainButton.addEventListener('click', backToHomePage)
+SaveThisPosterButton.addEventListener('click', saveThisPoster)
+showSavedPostersButton.addEventListener('click', showSavedPosters)
+showRandomPosterButton.addEventListener('click',loadPage)
+createYourOwnPosterButton.addEventListener('click',createPosterSection)
+takeMeBackButton.addEventListener('click', backToHomePage)
+showMyPosterButton.addEventListener('click', showMyPoster)
+//working on this
+showUnmotivationalPosterButton.addEventListener('click', showUnmotivationalPosters)
+backToMainButton2.addEventListener('click', backToHomePage)
 
-// functions and event handlers go here 👇
-// (we've provided two to get you started)!
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
+function showUnmotivationalPosters() {
+  showUnmotivationalSection.classList.remove('hidden')
+  mainViewHomePage.classList.add('hidden')
+  helperShowUnmotivatedPoster()
+}
+
+function backToHomePage() {
+  showSavedPostersSection.classList.add('hidden')
+  createYourOwnPosterSection.classList.add('hidden')
+  showUnmotivationalSection.classList.add('hidden')
+  mainViewHomePage.classList.remove('hidden')
+}
+
+function saveThisPoster(imageURL, title, quote) {
+  var poster = {
+    imageURL: document.querySelector('.poster-img').src,
+    title: document.querySelector('.poster-title').innerText,
+    quote: document.querySelector('.poster-quote').innerText
+  }
+  helperSaveUniquePosters(poster)
+}
+
+function showMyPoster(event) {
+  event.preventDefault()
+  var imageURL = inputYourOwnPosterImageURL.value
+  var title = inputYourOwnPosterTitle.value
+  var quote = inputYourOwnPosterQuote.value
+
+  helperIfShowMyPosterIsBlank(imageURL, title, quote)
+ 
+  backToHomePage()
+}
+
+function showSavedPosters() {
+  showSavedPostersSection.classList.remove('hidden')
+  mainViewHomePage.classList.add('hidden')
+  helperCreateMiniPosterSavedSpots()
+}
+
+function createPosterSection() {
+  createYourOwnPosterSection.classList.remove('hidden')
+  mainViewHomePage.classList.add('hidden')
+}
+
+function loadPage() {
+  var randomImageIndex = getRandomIndex(images)
+  var randomTitleIndex = getRandomIndex(titles)
+  var randomQuoteIndex = getRandomIndex(quotes)
+
+  var randomImage = images[randomImageIndex]
+  var randomTitle = titles[randomTitleIndex]
+  var randomQuote = quotes[randomQuoteIndex]
+
+  var currentPoster = createPoster(randomImage, randomTitle, randomQuote)
+ 
+  document.querySelector('.poster-img').src = currentPoster.imageURL
+  document.querySelector('.poster-title').innerText = currentPoster.title
+  document.querySelector('.poster-quote').innerText = currentPoster.quote
 }
 
 function createPoster(imageURL, title, quote) {
@@ -117,3 +323,58 @@ function createPoster(imageURL, title, quote) {
     title: title, 
     quote: quote}
 }
+
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length)
+}
+
+function helperSaveUniquePosters(poster) {
+  if (savedPosters.some(savedPoster => 
+    savedPoster.imageURL === poster.imageURL &&
+    savedPoster.title === poster.title &&
+    savedPoster.quote === poster.quote)) {
+    return;
+  } else {
+    savedPosters.push(poster);
+  }
+}
+
+function helperCreateMiniPosterSavedSpots() {
+  savedPosterCounter.innerHTML = ''
+  for (let i = 0; i < savedPosters.length; i++) {
+    savedPosterCounter.insertAdjacentHTML('beforeend', 
+      `<article class="mini-poster">
+        <img class="mini-poster img" src="${savedPosters[i].imageURL}" alt="nothin' to see here">
+        <h2>${savedPosters[i].title}</h2>
+        <h4>${savedPosters[i].quote}</h4>
+      </article>`);
+  }
+}
+
+function helperShowUnmotivatedPoster() {
+  showUnmotivationalPosterCounter.innerHTML = ''
+  for (let i = 0; i < unmotivationalPosters.length; i++) {
+    showUnmotivationalPosterCounter.insertAdjacentHTML('beforeend', 
+      `<article class="un-mini-poster">
+        <img class="un-mini-poster img" src="${unmotivationalPosters[i].img_url}" alt="nothin' to see here">
+        <h2>${unmotivationalPosters[i].name}</h2>
+        <h4>${unmotivationalPosters[i].description}</h4>
+      </article>`);
+  }
+}
+
+function helperIfShowMyPosterIsBlank(imageURL, title, quote) {
+  if (imageURL === '' || title === '' || quote === '') {
+      return
+    } else {
+    document.querySelector('.poster-img').src = imageURL;
+    document.querySelector('.poster-title').innerText = title;
+    document.querySelector('.poster-quote').innerText = quote;
+
+    inputYourOwnPosterImageURL.value = '';
+    inputYourOwnPosterTitle.value = '';
+    inputYourOwnPosterQuote.value = '';
+  }
+}
+
+window.onload = loadPage()

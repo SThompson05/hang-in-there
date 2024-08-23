@@ -144,3 +144,42 @@ button:hover {
   margin-bottom: 10px;
   text-transform: uppercase;
 }
+
+/* ~~~~~ UNMOTIVATIONAL POSTER SECTION ~~~~~ */
+
+.unmotivational-posters-flex {
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: space-evenly; 
+  gap: 15px; 
+  margin: 20px 30px ;
+} 
+
+.un-mini-poster {
+  background: rgb(141, 141, 141);
+  border-radius: 10px;
+  color: white;
+  height: 340px;
+  padding: 5px;
+  width: 425px;
+}
+
+.un-mini-poster img {
+  height:240px;
+  width: 360px;
+}
+
+.un-mini-poster h2,
+.delete {
+  color: rgb(0, 0, 0);
+  line-height: 1;
+  width: 90%;
+}
+
+.un-mini-poster h2 {
+  font-size: 30px;
+  font-weight: normal;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
