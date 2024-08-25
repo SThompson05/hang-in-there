@@ -23,6 +23,24 @@ var showUnmotivationalSection = document.querySelector('.unmotivational-posters.
 var backToMainButton2 = document.querySelector('.back-to-main2')
 var showUnmotivationalPosterCounter = document.querySelector('.unmotivational-posters-flex')
 
+// var savedPostersClick = document.querySelector('.saved-posters')
+// savedPosters.addEventListener('dblclick', showSavedPoster)
+
+// function showSavedPoster(event) {
+//   if (event.target.classList.contains('mini-poster'))
+//     var poster = {
+//       imageURL: document.querySelector('.mini-poster-img').src,
+//       title: document.querySelector(h2).innerText,
+//       quote: document.querySelector(h4).innerText
+//     }
+
+//     document.querySelector('.poster-img').src = poster.imageURL;
+//     document.querySelector('.poster-title').innerText = poster.title;
+//     document.querySelector('.poster-quote').innerText = poster.quote;
+
+//     backToHomePage()
+// }
+
 // working on this
 // var article = document.querySelector('.un-mini-poster')
 // article.addEventListener('dblclick', event => {
@@ -305,7 +323,7 @@ function backToHomePage() {
   mainViewHomePage.classList.remove('hidden')
 }
 
-function saveThisPoster(imageURL, title, quote) {
+function saveThisPoster() {
   var poster = {
     imageURL: document.querySelector('.poster-img').src,
     title: document.querySelector('.poster-title').innerText,
@@ -337,13 +355,9 @@ function createPosterSection() {
 }
 
 function loadPage() {
-  var randomImageIndex = getRandomIndex(images)
-  var randomTitleIndex = getRandomIndex(titles)
-  var randomQuoteIndex = getRandomIndex(quotes)
-
-  var randomImage = images[randomImageIndex]
-  var randomTitle = titles[randomTitleIndex]
-  var randomQuote = quotes[randomQuoteIndex]
+  var randomImage = images[getRandomIndex(images)]
+  var randomTitle = titles[getRandomIndex(titles)]
+  var randomQuote = quotes[getRandomIndex(quotes)]
 
   var currentPoster = createPoster(randomImage, randomTitle, randomQuote)
  
