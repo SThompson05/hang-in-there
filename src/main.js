@@ -2,7 +2,7 @@ var mainViewHomePage = document.querySelector('.main-poster')
 var backToMainButton = document.querySelector('.back-to-main')
 var takeMeBackButton = document.querySelector('.show-main')
 
-var SaveThisPosterButton = document.querySelector('.save-poster')
+var saveThisPosterButton = document.querySelector('.save-poster')
 var showSavedPostersButton = document.querySelector('.show-saved')
 var showSavedPostersSection = document.querySelector('.saved-posters.hidden')
 
@@ -18,11 +18,48 @@ var inputYourOwnPosterTitle = document.querySelector('#poster-title')
 var inputYourOwnPosterQuote = document.querySelector('#poster-quote')
 var showMyPosterButton = document.querySelector('.make-poster')
 
-// working on this
 var showUnmotivationalPosterButton = document.querySelector('.unmotivational-poster')
 var showUnmotivationalSection = document.querySelector('.unmotivational-posters.hidden')
 var backToMainButton2 = document.querySelector('.back-to-main2')
 var showUnmotivationalPosterCounter = document.querySelector('.unmotivational-posters-flex')
+
+// working on this
+// var article = document.querySelector('.un-mini-poster')
+// article.addEventListener('dblclick', event => {
+//   var target = event.target
+
+//   if (target.tagName === 'ARTICLE') {
+//     console.log(article.className)
+//   }
+// })
+
+var unMiniPosterClick = document.querySelector('.unmotivational-posters-flex')
+// unMiniPosterClick.addEventListener('dblclick', deleteUnMotivationalPoster)
+
+// function deleteUnMotivationalPoster(event) {
+  // if (event.target.classList.contains('un-mini-poster')) {
+  //   console.log(event.target)
+  //   event.target.classList.add('hidden')
+  // }
+//   if (event.target.classList.contains('parent un-mini-poster')) {
+//     console.log(event.target)
+//     event.target.classList.add('hidden')
+//   }
+// }
+
+// var unMiniPosterClick = document.querySelector('.unmotivational-posters-flex')
+
+// addGlobalEventListener('dblclick', '.un-mini-poster', e => {
+//   console.log('hi')
+//   e.target.classList.add('hidden')
+// })
+
+// function addGlobalEventListener(type, selector, callback) {
+//   document.addEventListener(type, e => {
+//     if (e.target.matches(selector)) callback(e)
+//   })
+// }
+
 
 var images = [
   "./assets/bees.jpg",
@@ -246,13 +283,12 @@ var unmotivationalPosters = [
 var savedPosters = [];
 
 backToMainButton.addEventListener('click', backToHomePage)
-SaveThisPosterButton.addEventListener('click', saveThisPoster)
+saveThisPosterButton.addEventListener('click', saveThisPoster)
 showSavedPostersButton.addEventListener('click', showSavedPosters)
 showRandomPosterButton.addEventListener('click',loadPage)
 createYourOwnPosterButton.addEventListener('click',createPosterSection)
 takeMeBackButton.addEventListener('click', backToHomePage)
 showMyPosterButton.addEventListener('click', showMyPoster)
-//working on this
 showUnmotivationalPosterButton.addEventListener('click', showUnmotivationalPosters)
 backToMainButton2.addEventListener('click', backToHomePage)
 

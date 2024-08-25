@@ -62,12 +62,14 @@ button:hover {
 }
 
 .poster-title {
-  font-size: 60px;
+  font-size: 4vw;
   font-weight: normal;
-  letter-spacing: 20px;
+  letter-spacing: 12px;
+  width: 90%;
+  margin-top: 5px;
   margin-bottom: 10px;
   text-transform: uppercase;
-}
+ }
 
 .main-poster button {
   margin: 10px;
@@ -161,6 +163,7 @@ button:hover {
   color: white;
   height: 340px;
   padding: 5px;
+  padding-top: 10px;
   width: 425px;
 }
 
@@ -180,6 +183,6 @@ button:hover {
   font-size: 30px;
   font-weight: normal;
   letter-spacing: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   text-transform: uppercase;
 }
