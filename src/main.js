@@ -23,8 +23,7 @@ var showUnmotivationalSection = document.querySelector('.unmotivational-posters.
 var backToMainButton2 = document.querySelector('.back-to-main2')
 var showUnmotivationalPosterCounter = document.querySelector('.unmotivational-posters-flex')
 
-
-
+var unMiniPosterClick = document.querySelector('.unmotivational-posters-flex')
 
 var images = [
   "./assets/bees.jpg",
@@ -247,7 +246,6 @@ var unmotivationalPosters = [
 ];
 var savedPosters = [];
 var currentUnmotivationPosters = cleanData(unmotivationalPosters)
-// var deletedPosters = [];
 
 backToMainButton.addEventListener('click', backToHomePage)
 saveThisPosterButton.addEventListener('click', saveThisPoster)
@@ -258,29 +256,13 @@ takeMeBackButton.addEventListener('click', backToHomePage)
 showMyPosterButton.addEventListener('click', showMyPoster)
 showUnmotivationalPosterButton.addEventListener('click', showUnmotivationalPosters)
 backToMainButton2.addEventListener('click', backToHomePage)
+unMiniPosterClick.addEventListener('dblclick', deleteUnMotivationalPoster)
 
 function showUnmotivationalPosters() {
   showUnmotivationalSection.classList.remove('hidden')
   mainViewHomePage.classList.add('hidden')
   helperShowUnmotivatedPoster()
-  // deletedPosterView()
 }
-
-///////////////working on
-// function deletedPosterView() {
-//     unmotivationalPosters.forEach(poster => {
-//   if (deletedPosters.includes(poster.name)) {
-//     poster.remove()
-//     }
-//   })
-  // if (deletedPosters.some(deletedPosters => 
-  //   deletedPosters.img_url === unmotivationalPosters.img_url &&
-  //   deletedPosters.name === unmotivationalPosters.name &&
-  //   deletedPosters.description === unmotivationalPosters.description)) {
-  //     classList.add('hidden')
-  //     }
-  
-// }
 
 function backToHomePage() {
   showSavedPostersSection.classList.add('hidden')
@@ -305,13 +287,13 @@ function showMyPoster(event) {
   var quote = inputYourOwnPosterQuote.value
 
   helperIfShowMyPosterIsBlank(imageURL, title, quote)
- 
   backToHomePage()
 }
 
 function showSavedPosters() {
   showSavedPostersSection.classList.remove('hidden')
   mainViewHomePage.classList.add('hidden')
+
   helperCreateMiniPosterSavedSpots()
 }
 
@@ -324,7 +306,6 @@ function loadPage() {
   var randomImage = images[getRandomIndex(images)]
   var randomTitle = titles[getRandomIndex(titles)]
   var randomQuote = quotes[getRandomIndex(quotes)]
-
   var currentPoster = createPoster(randomImage, randomTitle, randomQuote)
  
   document.querySelector('.poster-img').src = currentPoster.imageURL
@@ -334,7 +315,6 @@ function loadPage() {
 
 function createPoster(imageURL, title, quote) {
   return {
-    id: Date.now(), 
     imageURL: imageURL, 
     title: title, 
     quote: quote}
@@ -350,6 +330,24 @@ function cleanData(posters) {
     })
   })
   return cleanPosterData
+}
+
+function deleteUnMotivationalPoster(event){
+  var poster = event.target.closest('.un-mini-poster')
+  var posterName = poster.querySelector('h2').innerText;
+  
+  if (poster) {
+    poster.remove()
+  }
+  helperRemoveDeletedPoster(currentUnmotivationPosters, posterName)
+}
+
+function helperRemoveDeletedPoster(currentUnmotivationPosters, posterName) {
+  for (let i = currentUnmotivationPosters.length - 1; i >= 0; i--) {
+    if (currentUnmotivationPosters[i].title === posterName) {
+      currentUnmotivationPosters.splice(i, 1);
+    }
+  }
 }
 
 function getRandomIndex(array) {
@@ -406,42 +404,3 @@ function helperIfShowMyPosterIsBlank(imageURL, title, quote) {
 }
 
 window.onload = loadPage()
-
-
-
-var unMiniPosterClick = document.querySelector('.unmotivational-posters-flex')
-unMiniPosterClick.addEventListener('dblclick', deleteUnMotivationalPoster)
-
-function deleteUnMotivationalPoster(event){
-  // if (event.target.classList.contains('img') || event.target.tagName === 'H2' || event.target.tagName === 'H4') {
-  //   event.target.parentElement.classList.add('hidden');
-  // } else if (event.target.classList.contains('un-mini-poster')) {
-  //   event.target.classList.add('hidden')
-  // }
-  var poster = event.target.closest('.un-mini-poster')
-  var posterName = poster.querySelector('h2').innerText;
-  // deletedPosters.push(poster_name)
-   if (poster) {
-    poster.remove()
-  }
-  // console.log(deletedPosters)
-  console.log(posterName)
-  // console.log(poster)
-
-  // currentUnmotivationPosters.filter(posters => currentUnmotivationPosters.title !== poster_name)
-  // removeDeletedPoster(currentUnmotivationPosters, poster_name)
-  // currentUnmotivationPosters = removeDeletedPoster(currentUnmotivationPosters, posterName)
-  // poster.filter( poster_name)
-  // var remove_poster = currentUnmotivationPosters.findIndex(unmotPost => unmotPost.title === poster_name)
-  // if (remove_poster !== -1) { 
-  //   currentUnmotivationPosters.splice(remove_poster, 1)
-  // }
-}
-// function removeDeletedPoster(currentUnmotivationPosters, posterName) {
-//   return currentUnmotivationPosters.filter(poster => poster.title !== posterName);
-// }
-// function removeDeletedPoster(currentUnmotivationPosters, posterName) {
-//   return currentUnmotivationPosters.filter(posterName => currentUnmotivationPosters.title !== posterName)
-//   currentUnmotivationPosters = removeDeletedPoster
-// }
-
